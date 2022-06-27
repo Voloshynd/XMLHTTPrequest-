@@ -22,9 +22,9 @@ inputPLN.addEventListener('input', ()=>{
     // Zdarzenia 
 
     request.addEventListener('readystatechange',()=>{
-        if(request.readyState === 4 && request.status === 200){// readyState uzywane dojsc rzadko
+        if(request.readyState === 4 && request.status === 200){// readyState uzywane dojsc rzadko, zwraca bierzacy stan obiekta XMLHttpRequest
             const data = JSON.parse(request.response)// przeksztacamy w obiekt 
-            console.log(typeof +inputPLN)
+            
             inputUSD.value  = (+inputPLN.value * +data.current.usd).toFixed(2);  
            
         } else {
@@ -46,6 +46,12 @@ inputPLN.addEventListener('input', ()=>{
         }
      })//sprawdza stan naszego regqustu w dany moment 
 
-
+ /* XHR obiek ma kilka stanow 
+ 0 unsent mtedoda open() jeszcze nie zostala wylolana 
+ 1 opened metoda open() zostala wylolana 
+ 2 HEADERS_RECEIVED Метод send() zostala wylolana, dostepnu naglowki 
+ 3 LOADING zaladunek responseText - zawiera czesciowe dane 
+ 4 DONE operacja zostala realizowana 
+*/
      
 })
